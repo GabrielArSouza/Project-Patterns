@@ -6,25 +6,27 @@
 package exemplo.composite;
 
 /**
- * Copy From: https://sourcemaking.com/design_patterns/composite/java/3
- * @author gabriel
+ * Adapted from: https://sourcemaking.com/design_patterns/composite/java/3
+ * @author gabriel & victor
  */
 public class CompositeDemo {
     public static void main( String[] args ) {
-        Composite first  = new Row( 1 );
-        Composite second = new Column( 2 );
-        Composite third  = new Column( 3 );
-        Composite fourth = new Row( 4 );
-        Composite fifth  = new Row( 5 );
-        first.add(second);
-        first.add(third);
-        third.add(fourth);
-        third.add(fifth);
-        first.add(new Primitive(6));
-        second.add(new Primitive(7));
-        third.add(new Primitive(8));
-        fourth.add(new Primitive(9));
-        fifth.add(new Primitive(10));
+        
+    	Component first  = new Composite( 1 );
+        Component second = new Composite( 2 );
+        Component third  = new Row( 3 );
+        Component fourth = new Column( 4 );
+        Component fifth  = new Row( 5 );
+        
+        try {
+			first.add(second);
+			first.add(third);
+			second.add(fourth);
+			second.add(fifth);
+		} catch (AddToLeafException e) {
+			e.printStackTrace();
+		}
+        
         first.traverse();
     }
 }

@@ -6,17 +6,24 @@
 package exemplo.composite;
 
 /**
- * Copy from: https://sourcemaking.com/design_patterns/composite/java/3
+ * Adapted from: https://sourcemaking.com/design_patterns/composite/java/3
  * @author gabriel
  */
-public class Column extends Composite {
+public class Column extends Primitive {
+	
     public Column(int val) {
         super(val);
     }
 
     @Override
     public void traverse() {
-        System.out.print("Col");
+    	traverse(0);
+    }
+    
+    @Override
+    public void traverse(int nvl) {
+        System.out.print(new String(new char[nvl]).replace("\0", " ") + "Col");
         super.traverse();
     }
+
 }

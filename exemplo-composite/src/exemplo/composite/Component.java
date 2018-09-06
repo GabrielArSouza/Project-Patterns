@@ -6,9 +6,15 @@
 package exemplo.composite;
 
 /**
- * Copy from: https://sourcemaking.com/design_patterns/composite/java/3
- * @author gabriel
+ * Adapted from: https://sourcemaking.com/design_patterns/composite/java/3
+ * @author gabriel & victor
  */
 public interface Component {
-    void traverse();
+	
+    public void traverse();
+    
+    public void traverse(int nvl);
+    
+    public void add(Component c) throws AddToLeafException;
+
 }

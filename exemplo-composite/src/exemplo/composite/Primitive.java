@@ -6,20 +6,25 @@
 package exemplo.composite;
 
 /**
- *Copy from: https://sourcemaking.com/design_patterns/composite/java/3
- * @author gabriel
+ * Adapted from: https://sourcemaking.com/design_patterns/composite/java/3
+ * @author gabriel & victor
  */
-public class Primitive implements Component {
+public abstract class Primitive implements Component {
 
     private int value;
 
     public Primitive(int val) {
         value = val;
     }
-
+    
     @Override
     public void traverse() {
-        System.out.print( value + "  " );
+    	System.out.print(" " + value + "\n" );
     }
+    
+    @Override
+    public void add(Component c) throws AddToLeafException {
+		throw new AddToLeafException();
+	}
     
 }

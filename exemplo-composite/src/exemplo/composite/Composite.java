@@ -5,30 +5,37 @@
  */
 package exemplo.composite;
 
+import java.util.ArrayList;
+
 /**
- * Copy from: https://sourcemaking.com/design_patterns/composite/java/3
- * @author gabriel
+ * Adapted from: https://sourcemaking.com/design_patterns/composite/java/3
+ * @author gabriel & victor
  */
-public abstract class Composite implements Component {
+public class Composite implements Component {
      // 3. Couple to interface
-    private Component[] children = new Component[9];
-    private int total = 0;
+    private ArrayList<Component>  children;
     private int value;
     public Composite(int val) {
         value = val;
+        children = new ArrayList<Component>();
     }
-
-    // 3. Couple to interface
+    
+    @Override
     public void add(Component c) {
-        children[total++] = c;
+        children.add(c);
     }
 
     @Override
     public void traverse() {
-        System.out.print(value + "  ");
-        for (int i=0; i < total; i++) {
+    	traverse(0);
+    }
+    
+    @Override
+    public void traverse(int nvl) {
+        System.out.print(new String(new char[nvl]).replace("\0", " ") + value + "\n");
+        for (Component sub : children) {
             // 4. Delegation and polymorphism
-            children[i].traverse();
+            sub.traverse(nvl + 2);
         }
     }
 }
